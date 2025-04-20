@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bienvenido a Lows Weones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2c2f33;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      transition: background-color 2s ease;
+    }
+
+    h1 {
+      color: #7289da;
+    }
+
+    .button {
+      background-color: #7289da;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .gallery img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    .members {
+      margin-top: 30px;
+    }
+
+    .member-card {
+      background-color: #23272a;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      display: inline-block;
+      width: 250px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    #dynamicMessage {
+      font-size: 1.2rem;
+      margin-top: 25px;
+      min-height: 1.5em;
+      transition: color 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Bienvenidos a: <span id="serverName">Los Weones</span> 🎉</h1>
+  <p>Gracias por ser parte de nuestra comunidad. Esta página es un regalito para ustedes 💙</p>
+  <button class="button" onclick="joinDiscord()">Regalitp de parte del Admin</button>
+
+  <div class="members">
+    <h2>💎 Miembros Destacados</h2>
+    <div class="member-card">👑 Admin cuchilla12(UwU)<br><strong>Rol:</strong> Fundador</div>
+    <div class="member-card">🎨 CreativeCat cuchilla12(UwU) & frank0324(OwO)<br><strong>Rol:</strong> Diseñador</div>
+    <div class="member-card">🧠 BigBrain cuchilla12(UwU), frank0324(OwO), Nivek_23743(Nivek zeppeline)<br><strong>Rol:</strong> Mejoras e ideas creativas</div>
+  </div>
+
+  <div class="gallery">
+    <h2>📸 Recuerdos del servidor</h2>
+    <img src="mundoGey.png" alt="imagen1" />
+    <img src="emperador.png" alt="imagen2" />
+    <img src="historialdejuanma.png" alt="imagen3" />
+  </div>
+
+  <p id="dynamicMessage"></p>
+
+  <script>
+    const messages = [
+      "¡Eres parte de algo genial! ✨",
+      "Gracias por compartir tus risas con nosotros 😄",
+      "¡Nuestro servidor es mejor contigo! 💖",
+      "¡Un día más para pegar bola con los mejores! 🎮",
+      "Gracias por estar en la vaina más sabrosa del Discord 🔥",
+      "¡Parce, sin vos esto no sería lo mismo! 💯",
+      "No somos tóxicos... solo nos queremos a los gritos 😂",
+      "Gracias por ser parte de esta chimba de comunidad 🫶",
+      "¡Aguante Los Weones, che! 🎉",
+      "Si esto no es la mejor familia, que me parta un rayo 🤣",
+      "Eres más importante aquí que el admin con permisos 💻✨",
+      "Aquí se viene a joder, a reír y a pasarla brutal 😎",
+      "¡Sos crack, loco! Gracias por bancarnos siempre 💙",
+      "Gracias por darle flow a este servidor, compa 🎧",
+      "Pilas pues, que esto se va a poner bueno 🔥",
+      "Esta comunidad sin ti sería como una arepa sin relleno 😢",
+      "¡Órale! Gracias por ser parte de este desmadre 😜",
+      "No serás bot, pero tienes todo nuestro respeto 🫡",
+      "Aquí todos somos panas, menos el bot que banea 😆",
+      "Si estás aquí, ya eres parte del combo ganador 💪",
+      "¡La estás rompiendo más que un meme en tendencia! 🐸",
+      "Gracias por ponerle sazón a este gallinero 🐔✨",
+      "Con vos, este server está re piola 🎉"
+    ];
+
+    const colors = [
+      "#ffb347", "#ff6961", "#77dd77", "#f49ac2", "#84b6f4", "#fdfd96",
+      "#cbaacb", "#f1cbff", "#ffdab9", "#b0e0e6", "#ffcccb", "#dda0dd",
+      "#aec6cf", "#ffeaa7", "#fab1a0", "#81ecec", "#e84393", "#74b9ff",
+      "#fd79a8", "#00cec9", "#55efc4", "#e17055", "#fdcb6e"
+    ];
+
+    const backgrounds = [
+  "#2c2f33", "#1f1f2e", "#2e3440", "#3c3f41", "#343a40", "#1e272e",
+  "#22313f", "#2c3e50", "#34495e", "#1c2833", "#2b2d42", "#1a1a2e"
+];
+
+    const messageElement = document.getElementById("dynamicMessage");
+    let currentMessageIndex = 0;
+
+    function typeWriter(message, color, i = 0) {
+      if (i === 0) messageElement.textContent = "";
+      if (i < message.length) {
+        messageElement.textContent += message.charAt(i);
+        messageElement.style.color = color;
+        setTimeout(() => typeWriter(message, color, i + 1), 50);
+      } else {
+        setTimeout(showNextMessage, 2500);
+      }
+    }
+
+    function showNextMessage() {
+      currentMessageIndex = Math.floor(Math.random() * messages.length);
+      const message = messages[currentMessageIndex];
+      const color = colors[currentMessageIndex % colors.length];
+      typeWriter(message, color);
+    }
+
+    function changeBackgroundColor() {
+      const color = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      document.body.style.backgroundColor = color;
+    }
+
+    // Iniciar
+    showNextMessage();
+    setInterval(changeBackgroundColor, 1600);
+
+    function joinDiscord() {
+      const inviteLink = "touchgrasss.com";
+      window.open(inviteLink, "_blank");
+    }
+  </script>
+</body>
+</html>
